@@ -12,10 +12,10 @@ const DataContext=createContext({
 function DataProvider({children}:{children:React.ReactNode}){
 const [search,setSearch]=useState<String>('')
 const [location,setLocation]=useState<String>('')
-function handleSearchChange(data){
+function handleSearchChange(data:string){
     setSearch(data)
 }
-function handleLocationChange(data){
+function handleLocationChange(data:string){
     setLocation(data)
 }
 console.log(search,location)

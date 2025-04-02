@@ -8,9 +8,8 @@ import { IoIosCheckmarkCircle } from "react-icons/io";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPinterestP, FaTwitch, FaTwitter } from "react-icons/fa";
 import { IoLogoTwitter } from 'react-icons/io5';
 import NewAritcales from '@/app/(LandingPageComponents)/NewsArticles/NewsArticles';
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-// import Comments from '../Comments';
+
+import Comments from '../Comments';
 
 const jost=Jost({
   weight:['500'],
@@ -45,7 +44,7 @@ const page =async ({params}:articleDataType) => {
   const article=await params.articlename
   const articleName=article
   const filteredArticle:filteredArticleDataType | undefined=articles.find(el=>el.url===articleName)
- 
+ console.log(filteredArticle,'😤😤😤😤😤😤😤😤😤😤😤😤😤😤😤😤😤😤😤')
   if(!filteredArticle){
     return <div>no article</div>
   }
@@ -147,35 +146,9 @@ const page =async ({params}:articleDataType) => {
            </div>
             </div>
     {/* Comments */}
-    {/* <Comments/> */}
+    <Comments/>
     {/* Comments Input */}
-      <div className='w-full border rounded-md '>
-       <div className='w-full flex flex-col items-start justify-start space-y-5 p-8 text-slate-400 '>
-        {/* Input */}
-        <div className='w-full flex flex-col md:flex-row items-center justify-start md:justify-between space-y-3 md:space-y-0 md:space-x-4'>
-          <div className='w-full flex flex-col items-start justify-start space-y-1'>
-            <div style={{fontWeight:300}} className={`${jost.className} text-sm text-[#202124]`}>Your Name</div>
-          <input placeholder='Name' className='border min-w-full placeholder:text-sm p-2 rounded-md' />  
-
-          </div>
-          <div className='w-full flex flex-col items-start justify-start space-y-1'>
-            <div style={{fontWeight:300}} className={`${jost.className} text-sn text-[#202124]`}>Your Email</div>
-            <input placeholder='Email' className='border min-w-full placeholder:text-sm p-2 rounded-md' />  
-
-          </div>
-        </div>
-        <div className='w-full flex md:flex-row flex-col space-y-2 md:space-y-0 md:space-x-3'>
-         <div><input type='checkbox'/></div>
-         <div style={{fontWeight:300}} className={`${jost.className} text-sm text-[#202124] `}>Save my name, email, and website in this browser for the next time I comment.</div>
-        </div>
-        <div className='w-full flex flex-col space-y-4'>
-         <div  style={{fontWeight:300}}   className={`${jost.className} text-sm text-[#202124] `}>Your Comment</div>
-         <div><Textarea placeholder='Comment' className='h-32 bg-[#f0f5f7]' /></div>
-
-        </div>
-        <div className={`${jost.className} hover:bg-blue-700 hover:cursor-pointer text-white p-3 rounded-md flex items-center justify-center bg-[#1967d2] `}>Submit Comment</div>
-       </div>
-      </div>
+   
        </div>
       <NewAritcales/>
     </div>

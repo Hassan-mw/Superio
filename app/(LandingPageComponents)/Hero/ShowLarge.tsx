@@ -36,7 +36,7 @@ const ShowLarge = () => {
       // bg-[#f3f6fb]
     // <div className='w-full flex items-center justify-center '>
 
-        <div className='w-full h-[80vh] hidden lg:block '>
+        <div className='w-full h-[80vh] min-h-[900px] hidden lg:block '>
            {/* //!   IMAGE  */}
         <div className=' relative w-full h-full flex items-end justify-end '>
   

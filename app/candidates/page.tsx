@@ -3,12 +3,14 @@ import SideBar from '@/app/(components)/SideBar/SideBar'
 import  { Suspense, useContext } from 'react'
 import { Jost } from 'next/font/google'
 import Spinner from '@/components/ui/Spinner'
-import { getAllJob } from '../API/ApiCall'
+
 import CandidatesListSidebarData from './CandidatesListSidebarData'
 import CandidateListData from './CandidateListData'
-import { getAllCandidate } from '../API/ApiCandidate'
+
 
 import { Metadata } from 'next'
+import { getAllCandidate } from '../API/ApiCandidate'
+
 
 export const metadata: Metadata= {
   title: "Candidates - Superio ",

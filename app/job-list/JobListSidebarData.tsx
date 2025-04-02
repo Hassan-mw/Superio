@@ -44,12 +44,12 @@ const JobListSidebarData = () => {
    const searchParams=useSearchParams()
    const router=useRouter();
    const pathName=usePathname();
-   console.log(category)
+
+
+
  useEffect(()=>{
-  //  const handleSearchJobTitle=()=>{
      const params=new URLSearchParams(searchParams);
-    //  params.set("jobtitle",jobSearch)
-    //  params.set("jobCity",CitySearch)
+
    if( category !== "none" ) params.set("category", category); else params.delete("category");
    if( jobType !== "none")  params.set("jobtype",jobType) ; else params.delete("jobtype");
    if( datePosted!== "none")  params.set("datePosted",datePosted) ; else params.delete("datePosted");

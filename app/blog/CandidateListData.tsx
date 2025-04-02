@@ -51,7 +51,7 @@ const CandidateListData = () => {
           {/* 1 */}
 
       {    BlogData.map((data,index)=>
-     <div key={data.id} className='w-full  flex flex-col space-y-2 shadow-md border  rounded-lg'>
+     <Link href={`/newArticles/${data.url}`} key={data.id} className='w-full  flex flex-col space-y-2 shadow-md border  rounded-lg'>
      <div className=' rounded-lg  w-full p-3 '><img className='rounded-md w-full object-cover group-hover:scale-105 duration-500' src={`/${data.image}.jpg`} alt='article-1'/></div>
 
       {/*  Image and Text    */}
@@ -70,10 +70,10 @@ const CandidateListData = () => {
        {/* Read More */}
            {/* Read More */}
            <Button className={`px-3 ${jost.className} text-[#6e9fe3] flex items-center gap-x-5 w-24`} variant="link" effect="hoverUnderline">
-           <Link href={`/newArticles/${data.url}`}> Read More </Link> 
+           <div > Read More </div> 
 
     </Button>
-       </div> 
+       </Link> 
 )}
       
     </div>

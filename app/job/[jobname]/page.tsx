@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import TopBody from './TopBody'
 import jobCategoryArrays from '@/app/Array/job-category'
 import MiddleBody from './MiddleBody'
@@ -7,6 +8,8 @@ import { Jost, Prompt } from 'next/font/google'
 import { getAllJob, getjobById } from '@/app/API/ApiCall'
 import Link from 'next/link'
 import { BiLogInCircle } from 'react-icons/bi'
+import axios from 'axios';
+import Cookies from "js-cookie";
 
 
 interface paramsType {
@@ -37,37 +40,56 @@ const jost=Jost({
   subsets:['latin']
 })
 
-const page =async ({params}:paramsType) => {
-  // console.log(params)
-  const nameJob=await params.jobname
-  const JobData=await getjobById({name:nameJob});
-  if( JobData.message==="Invalid token"){
-    // data=[{status:"not Login"}]
-    console.log('🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎪🎪🎪🎪🎪🎪🎪🎪🎪🎪🎪🎪🎪🎪🎪🎪')
-return (
-  <div className=' w-full h-full flex flex-col space-y-4 items-center justify-center'>
+const page = ({params}:paramsType) => {
+  console.log("Token stored in cookie:", Cookies.get("jwt"))
 
-  <div className={`${jost.className} text-red-500 text-8xl `}>You are not login</div>
-  <Link href='/login' className={`${jost.className} flex items-center justify-center gap-x-3 pb-2 duration-500 border-[#f7f8fc] hover:border-blue-500 hover:text-blue-500 text-5xl border-b-4  `}>
-    Login   <BiLogInCircle />
-  </Link> 
-   </div>
-)
-   }
-  if(JobData?.status==='not Login'){
-  }
-  console.log(JobData.status,'🥼🥼🥼🥼🥼🥼🥼🥼🥼🥼🥼🥼🥼🥼🥼')
-  const [category]=JobData.getjob
-const job:filteredFeatureJobType | undefined =category
+  const [jobDataNew,setJobDataNew]=useState([])
+  const [error,setError]=useState()
 
-if(!job){
-  return 
-  <div>
-    No data avaiiable
-  </div>
+
+   useEffect(()=>{
+    const fetchjob=async()=>{
+   try{
+    const jobName=await params.jobname
+  const response=await axios.get(
+    `http://localhost:8000/api/job/${jobName}`,
+    //{},
+    { withCredentials: true }
+  )
+
+  setJobDataNew(response)
+  }catch(err){
+
+    setError(err.response)
+    if(err.response?.statusText==='Unauthorized'){
+      return(
+        <div>{err.response.data?.message}</div>
+      )
+    }
+   }}
+fetchjob();
+   },[params])
+
+console.log(jobDataNew?.data?.getjob)
+  const [category]=jobDataNew?.data?.getjob || []
+  console.log(category)
+// const job:filteredFeatureJobType | undefined =category
+
+if(error?.statusText==='Unauthorized'){
+  return (
+  <div className={`${jost.className} w-full flex flex-col space-y-4 items-center justify-center h-full min-h-screen/70`}>
+  <div>{error.data.message}</div> 
+  <Link href="/login" className={`${jost.className} text-blue-500 text-2xl`}>Login</Link>
+  </div>)
 }
-const {field,icon,location,qualification,experience,name,salery,time,urgent,expirationDate,maxSalary,minSalary,date,careerLevel}=job
 
+// if(category){
+
+
+const {field,icon,location,qualification,experience,name,salery,time,urgent,expirationDate,maxSalary,minSalary,date,careerLevel}=category || {}
+// const [field,icon,location,qualification,experience,name,salery,time,urgent,expirationDate,maxSalary,minSalary,date,careerLevel]=jobDataNew?.data?.getjob || []
+ console.log(field,icon,location,qualification,experience,name,salery,time,urgent,expirationDate,maxSalary,minSalary)
+//  }
   return (
     <div className='w-full flex items-center justify-center  bg-white'>
     <div className='w-full h-full max-w-screen-xl  flex flex-col  lg:flex-row lg:space-x-5  space-y-7 lg:space-y-0 lg:items-center lg:justify-start  p-3 '>
@@ -75,7 +97,7 @@ const {field,icon,location,qualification,experience,name,salery,time,urgent,expi
    <TopBody icon={icon} date={date} name={name} expirationDate={expirationDate} maxSalary={maxSalary} minSalary={minSalary} icon={icon} location={location} field={field} salery={salery} time={time} urgent={urgent} />
    <MiddleBody icon={icon}  date={date} maxSalary={maxSalary} minSalary={minSalary}  location={location} careerLevel={careerLevel} expirationDate={expirationDate} experience={experience}  qualification={qualification}/>
     </div>  
- icon:string,
+
    <div className='w-full lg:w-[30%] h-full '><BottomBody icon={icon} field={field} location={location} expirationDate={expirationDate} />  </div>  
     </div>  
     </div>  

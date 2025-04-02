@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { IoPersonOutline } from "react-icons/io5";
 import { GoBell } from "react-icons/go";
 import SideBar from '../(components)/SideBar/SideBar';
+import { useSession, signIn, signOut } from "next-auth/react"
 
 import Navigators from './Navigators';
 import { usePathname } from 'next/navigation';
@@ -26,6 +27,12 @@ import Register from '../login/Register';
 
 // import SideBar from './SideBar';
 function Navigation() {
+  // const { data: session } = useSession()
+ const [currentWay,setCurrentWay]=useState<String>('Login')
+  
+  function handleClick(data:String){
+    setCurrentWay(data)
+  }
   const [showLoginPage,setShowLoginpage]=useState(false)
   const pathname=usePathname()
  
@@ -59,15 +66,24 @@ function Navigation() {
         </div>
         {/* //! Right Icons */}
         <div className="flex items-center justify-center space-x-4">
+ 
+         {/* <div  className={`${jost.className} px-5 py-4 text-[#4181d9] rounded-lg text-sm  bg-[#e8edf9] hover:text-white hover:bg-blue-700 duration-300 `}>Login / Register </div> */}
+ 
         <Dialog>
-  <DialogTrigger>        <div className={`${jost.className} px-5 py-4 text-[#4181d9] rounded-lg text-sm  bg-[#e8edf9] hover:text-white hover:bg-blue-700 duration-300 `}>Login / Register </div>
+  <DialogTrigger>   
+         <div className={`${jost.className} px-5 py-4 text-[#4181d9] rounded-lg text-sm  bg-[#e8edf9] hover:text-white hover:bg-blue-700 duration-300 `}>Login / Register </div>
   </DialogTrigger>
   <DialogContent>
     <DialogHeader>
-      <DialogTitle>Login to superio</DialogTitle>
+      <DialogTitle>{currentWay} to superio
+      <div className='w-full flex items-center justify-center  max-w-xl p-8'>
+      <div onClick={()=>handleClick("Login")}  className={`${jost.className} ${currentWay==='Login' ? 'bg-[#1967d2] text-white border-[#1967d2] ' : "bg-slate-500 text-white "} p-4 rounded-l-xl w-1/2    flex items-center justify-center hover:cursor-pointer  `}>Login</div>
+      <div  onClick={()=>handleClick("Register")} className={`${jost.className} ${currentWay==='Register' ? 'bg-[#1967d2] text-white border-[#1967d2] ' : "bg-slate-500 text-white "} p-4 rounded-r-xl w-1/2    flex items-center justify-center border  hover:cursor-pointer  `}>Register</div>
+      </div>
+      </DialogTitle>
       <DialogDescription>
-        {/* <Login/> */}
-        <Register/>
+      {currentWay==='Login'&& <Login/>}
+      {currentWay==='Register'&& <Register/>}
       </DialogDescription>
     </DialogHeader>
   </DialogContent>

@@ -20,9 +20,22 @@ const jost=Jost({
   subsets:['latin']
 })
 
+interface arrayDataType{
+icon:string;
+name:string;
+field:String;
+location:String;
+minSalary:string;
+maxSalary:string;
+time:string;
+url:string;
+}
+
 interface handleJobDataType{
   jobData:[]
 }
+
+
 
 
 const JobListData = ({jobData}:handleJobDataType) => {
@@ -34,8 +47,7 @@ const router=useRouter();
 const pathName=usePathname();
 const {search,handleSearchChange,location,handleLocationChange}=UseData()
 
-
-let ArrayData;
+let ArrayData:arrayDataType[];
 
 ArrayData=jobData
 
@@ -48,13 +60,13 @@ if(search || location){
 }
 }
 if(ArrayData===undefined) ArrayData=[];
-console.log(ArrayData.filter((data)=>data.url.trim().toLowerCase().includes('financial')))
+
 
 const lastIndex=itemPerPage*count;//6
  const firstIndex=lastIndex-itemPerPage//6-6=0
 const records=ArrayData.slice(firstIndex,lastIndex)
 
-let number:[] =[];
+let number:number[] =[];
 
  if(ArrayData.length>0){
     number=[...Array(Math.ceil(ArrayData?.length/itemPerPage)).keys()].slice(1)
@@ -97,7 +109,7 @@ function handleClearSearch(){
     <div className='w-full grid grid-cols-1  space-y-5'>
         {
         ArrayData.length>0 ?
-        records?.map((data,index)=>
+        records?.map((data,index:number)=>
        <Link href={`/job/${data.url}`} key={index}  className='w-full flex items-start justify-between  border border-slate-200 rounded-md   group '>
         <div className=' flex items-center -center space-x-4 p-5 h-full  '>
          {/* //!  Image */}

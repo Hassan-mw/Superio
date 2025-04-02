@@ -11,6 +11,7 @@ import Company from './(LandingPageComponents)/Company/Company'
 import PopularJob from './(LandingPageComponents)/JobPage/PopularJob'
 import Hero from './(LandingPageComponents)/Hero/Hero'
 import ScrollElement from '@/components/ui/scroll-element';
+import HBO from './hbo/HBO';
 
 const page = () => {
   return (
@@ -22,7 +23,7 @@ const page = () => {
         {/*   Hero */}
         <ScrollElement
           direction='up'
-          viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
+          viewport={{ amount: 0.9, margin: '0px 0px 0px 0px' }}
           className='w-full flex items-center'
         >
          <Hero/>
@@ -47,13 +48,13 @@ const page = () => {
         </ScrollElement>
 
        {/*   Testmonials*/}
-        <ScrollElement
+        {/* <ScrollElement
           direction='right'
           viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
           className='w-full flex items-center'
         >
          <Testimonials/>
-        </ScrollElement>
+        </ScrollElement> */}
 
         {/*   Company */}
         <ScrollElement
@@ -100,20 +101,6 @@ const page = () => {
 
 
 
-
-    // <div className="w-full  flex flex-col bg-[#f2f5fb]">
-    //   {/* <div className='w-full  bg-[#f2f5fb] flex items-center justify-center'><Test/></div> */}
-    //   <div className='w-full  bg-[#f2f5fb] flex items-center justify-center'><Hero/></div>
-    //   <div className='w-full  bg-white flex items-center justify-center'><PopularJob/></div>
-    //   <div className='w-full  bg-white flex items-center justify-center'><FeatureJob/></div>
-    //   <div className='w-full  bg-[#f0f5f7] flex items-center justify-center'><Testimonials/></div>
-    //   <div className='w-full  bg-white flex items-center justify-center'><Company/></div>
-    //   <div className='w-full  bg-white flex items-center justify-center'><JobNumbers/></div>
-    //   <div className='w-full  bg-[#f0f5f7] flex items-center justify-center'><NewAritcales/></div>
-    //   <div className='w-full  bg-white flex items-center justify-center'><Download/></div>
-
-      
-    // </div>
   )
 }
 

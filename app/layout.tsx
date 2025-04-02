@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "./Navigation/Navigation";
 import Footer from "./(LandingPageComponents)/Footer/Footer";
 import { DataProvider } from "./ContextApi/ContextApi";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,11 +30,17 @@ export default function RootLayout({
     <html suppressHydrationWarning lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="w-screen h-screen overflow-y-auto  flex flex-col bg-[#f7f8fc] overflow-x-hidden">
+
          <div><Navigation/></div>
          <DataProvider>
+      
+   
 
         {children}
+      
+
          </DataProvider>
+
       <div className='w-full  bg-white flex items-center justify-center border-t'><Footer/></div>
 
       </div>
