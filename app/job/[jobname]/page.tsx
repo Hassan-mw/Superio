@@ -18,7 +18,6 @@ interface paramsType {
 
 interface filteredFeatureJobType {
      id:number,
-    icon:string,
     name:string, 
     field:string,
     location:string,
@@ -52,7 +51,7 @@ const page = ({params}:paramsType) => {
    try{
     const jobName=await params.jobname
   const response=await axios.get(
-    `http://localhost:8000/api/job/${jobName}`,
+    `http://localhost:8000/api/jobs/${jobName}`,
     //{},
     { withCredentials: true }
   )
@@ -70,7 +69,7 @@ const page = ({params}:paramsType) => {
 fetchjob();
    },[params])
 
-console.log(jobDataNew?.data?.getjob)
+console.log(jobDataNew?.data?.getjob,'👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽')
   const [category]=jobDataNew?.data?.getjob || []
   console.log(category)
 // const job:filteredFeatureJobType | undefined =category
