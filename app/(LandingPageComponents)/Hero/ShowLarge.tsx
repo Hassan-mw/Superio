@@ -33,15 +33,12 @@ const ShowLarge = () => {
     }, [])
 
     return (
-      // bg-[#f3f6fb]
-    // <div className='w-full flex items-center justify-center '>
-
         <div className='w-full h-[80vh] min-h-[900px] hidden lg:block '>
            {/* //!   IMAGE  */}
         <div className=' relative w-full h-full flex items-end justify-end '>
   
-        <div className='z-20  lg:h-[700px] xl:h-[730px]   2xl:h-[750px]   lg:w-[600px]  w-[520px] xl:w-[605px] bottom-0 lg:-right-[15%] lg-m:-right-[11%]  2xl-g:-right-[15%]   absolute  lg:block '>
-          <img  alt='Person'  src="/slider1.png" />
+        <div className='z-20  lg:h-[800px] lg-m:h-[850px] xl:h-[900px]    w-[520px]  lg:w-[600px] xl:w-[750px]   lg:-right-[20%] lg-m:-right-[15%] xl:-right-[30%]     absolute  lg:block '>
+          <img  alt='Person' className=' w-full h-full bottom-0 relative'  src="/slider1.png" />
        <MagneticCursor >
          <Link href='employers' className=' bottom-56 -right-20  absolute   hover:cursor-pointer '>
             <img className=' hover:cursor-pointer' src="/Job.png"/>
@@ -57,7 +54,7 @@ const ShowLarge = () => {
            </Link>
  
 
-         <Link href='/candidates' className='bottom-[460px]  -right-[120px] absolute hover:cursor-pointer '>
+         <Link href='/candidates' className='bottom-[600px]  -right-[120px] absolute hover:cursor-pointer '>
             <img className=' hover:cursor-pointer' src="/Candidates.png"/>
            </Link>
          </MagneticCursor>

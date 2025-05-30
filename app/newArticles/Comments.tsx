@@ -26,11 +26,11 @@ const Comments = () => {
     <div className='w-full flex flex-col space-y-8'>
 
         {comment.map((data,index)=>
-        <>
+        <div key={index}>
         <div className='flex flex-col ' key={index}>
         <NestedComment  data={data}   />
         </div>
-        </>
+        </div>
         )} 
         
    </div>

@@ -1,8 +1,15 @@
 'use client';
 import { Jost } from 'next/font/google'
-import React, { useState } from 'react'
+import React, { SetStateAction, useState } from 'react'
 import axios from 'axios'
 import Cookies from "js-cookie";
+// import { Toaster } from 'react-hot-toast';
+
+interface ErrorDatatype{
+    error:unknown;
+    status:number;
+    message:string;
+}
 import toast, { Toaster } from 'react-hot-toast';
 const jost = Jost({
     weight: ['500'],
@@ -10,24 +17,20 @@ const jost = Jost({
 });
 
 const Login = () => {
-    console.log("Token stored in cookie 🥼🥼:", Cookies.get("jwt"))
-    const [formData, setFormData] = useState({
-        email: "",
-        password: ""
-    });
+    const [email,setEmail] =useState<SetStateAction<string>>('');
+    const [password,setPassword]=useState<SetStateAction<string>>('')
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+    
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+
+    const handleSubmit = async () => {
+      
         try {
             const response = await axios.post(
                 "http://localhost:8000/api/user/login",
                 {
-                    email: formData.email,
-                    password: formData.password
+                    email ,
+                    password
                 },
                 {
                     headers: {
@@ -40,8 +43,8 @@ const Login = () => {
             console.log(response)
             if(response.status===201){
                 toast.success('Login Succesfully!')
-                formData.email=''
-                formData.password=''
+            setEmail(''),
+            setPassword('')
             }
            
         } catch (error) {
@@ -50,43 +53,52 @@ const Login = () => {
                 toast.error("Invalid email or password!")
                 
             }
-            console.error("Error signing up:", error.response ? error.response.data : error.message);
+
         }
     };
 
     return (
-        <div className="w-full max-w-xl bg-white flex flex-col items-start justify-start p-4 space-y-7">
+        <div className="w-full min-w-screen-xl   flex flex-col items-center justify-center  space-y-7">
            <Toaster position="top-center" reverseOrder={false} />
-            <form className="w-full space-y-6" onSubmit={handleSubmit}>
+           {/* <div  className={`${jost.className} text-2xl w-full flex items-start justify-start`}></div> */}
+           <div className='flex flex-col space-y-1 items-start justify-start p-5 rounded-lg bg-[#b6f3ea] w-full'>
+            <div style={{fontWeight:200}} className={`${jost.className} text-md text-[#788892]`}>Username:   <span style={{fontWeight:200}}  className={` text-[#36ceb4] ${jost.className} text-lg`}>    candidate</span> or <span style={{fontWeight:200}}  className={` text-[#36ceb4] text-md ${jost.className}`}>employer</span></div>
+            <div style={{fontWeight:200}}  className={`${jost.className} text-md text-[#788892]`}>Password:   <span style={{fontWeight:200}}  className={`text-[#36ceb4]  ${jost.className} text-lg`}>    demo</span> </div>
+           </div>
+            <div className="w-full space-y-6" >
                 <div className="w-full flex flex-col space-y-3">
-                    <label className={`${jost.className} text-sm text-[#202124]`}>Email</label>
+                    <div className={`${jost.className} text-sm text-[#202124]`}>Email</div>
                     <input
                         required
-                        name="email"
-                        onChange={handleChange}
+                       type='email'
+                        onChange={(e)=>setEmail(e.target.value)}
                         placeholder="Email"
                         className="bg-[#f0f5f7] border focus:outline-none focus:border-blue-300 focus:bg-white border-[#f0f5f7] min-w-full p-2 rounded-md"
                     />
                 </div>
 
                 <div className="w-full flex flex-col space-y-3">
-                    <label className={`${jost.className} text-sm text-[#202124]`}>Password</label>
+                    <div className={`${jost.className} text-sm text-[#202124]`}>Password</div>
                     <input
                         required
                         name="password"
                         type="password"
-                        onChange={handleChange}
+                        onChange={(e)=>setPassword(e.target.value)}
                         placeholder="Password"
                         className="bg-[#f0f5f7] border focus:outline-none focus:border-blue-300 focus:bg-white border-[#f0f5f7] min-w-full p-2 rounded-md"
                     />
                 </div>
+                <div className="w-full flex items-center justify-between">
+                  <div style={{fontWeight:200}}   className='flex items-center  justify-center space-x-4'><input type='checkbox'/><span style={{fontWeight:200}} className={`${jost.className} text-sm`}>Keep me signed in</span></div>
+                  <div style={{fontWeight:200}}  className={`${jost.className} text-sm`} >Forgotten password?</div>
+                </div>
                 <button
-                    type="submit"
+                   onClick={()=>handleSubmit()}
                     className="text-white bg-[#1967d2] w-full flex items-center justify-center p-3 rounded-lg hover:bg-blue-700 duration-700 cursor-pointer"
                 >
-                    Signup
+                    Login
                 </button>
-            </form>
+            </div>
         </div>
     );
 };

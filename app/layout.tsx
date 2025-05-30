@@ -1,20 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
 import Navigation from "./Navigation/Navigation";
 import Footer from "./(LandingPageComponents)/Footer/Footer";
 import { DataProvider } from "./ContextApi/ContextApi";
-import { Suspense } from "react";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Superio - Just another WordPress",
@@ -28,15 +17,15 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div className="w-screen h-screen overflow-y-auto  flex flex-col bg-[#f7f8fc] overflow-x-hidden">
+      <body >
+        <div className="w-screen h-screen overflow-y-auto  flex flex-col  overflow-x-hidden">
 
          <div><Navigation/></div>
          <DataProvider>
       
    
 
-        {children}
+     {children}
       
 
          </DataProvider>

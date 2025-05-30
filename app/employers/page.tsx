@@ -30,7 +30,7 @@ console.log(filter)
 let JobData;
  const response=await getAllEmploy({filter});
 const  {status,company}:getAllEmployDatType=response || {status:'',company:[]}
- if(status==='err'){
+ if(response===null){
   return (
     <div className='w-full h-full flex items-center justify-center text-4xl'>No Data</div>
   )

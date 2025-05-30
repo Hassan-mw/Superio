@@ -8,6 +8,7 @@ if(!response.ok){
     console.error("Can not fetch the data")
 }
 const data=await response.json();
+console.log(data,'🦌🐈🦮🐎🐆')
 return data
 }catch(err){
 console.error(err)

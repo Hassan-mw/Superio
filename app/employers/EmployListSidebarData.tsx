@@ -43,7 +43,7 @@ const EmployListSidebarData = () => {
   if( searchTitle !== "none")  params.set("title",searchTitle) ; else params.delete("location");
   if( location !== "none")  params.set("location",location) ; else params.delete("location");
   if( category !== "none")  params.set("category",category) ; else params.delete("category");
-  if(foundedDate!=='1992' ) params.set("foundedDate[lt]",foundedDate); else params.delete("foundedDate[lt]");
+  if(foundedDate!=='1992' ) params.set("foundedDate[gt]",foundedDate); else params.delete("foundedDate[gt]");
   if(distance!=='0' ) params.set("distance[lt]",distance); else params.delete("distance[lt]");
     router.replace(`${pathName}?${params.toString()}`,{scroll:false})
 },[distance,searchTitle,foundedDate,location,category])
@@ -130,9 +130,9 @@ const EmployListSidebarData = () => {
               {/* Founded Date*/}
           <div className='w-full flex flex-col space-y-1 group'>
           <div style={{fontWeight:500}} className={` ${jost.className} text-lg`}>Founded Date</div>
-              <div style={{fontWeight:500}} className={` ${jost.className} w-full flex items-start justify-start text-sm text-blue-500`}>Before {foundedDate} </div>
+              <div style={{fontWeight:500}} className={` ${jost.className} w-full flex items-start justify-start text-sm text-blue-500`}>After {foundedDate} </div>
                     <div className='w-full'>
-                       <input type='range' min='1992'   value={foundedDate} max='2025'   onChange={(e) => setfoundedDate(e.target.value)} placeholder='City or postcode' className={`w-full h-1 placeholder:${jost.className}`}  />       
+                       <input type='range' min='1992'   value={foundedDate} max='2024'   onChange={(e) => setfoundedDate(e.target.value)} placeholder='City or postcode' className={`w-full h-1 placeholder:${jost.className}`}  />       
                           </div>
                 
           </div>

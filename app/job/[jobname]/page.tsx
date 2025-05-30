@@ -69,10 +69,10 @@ const page = ({params}:paramsType) => {
 fetchjob();
    },[params])
 
-console.log(jobDataNew?.data?.getjob,'👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽👽')
+
   const [category]=jobDataNew?.data?.getjob || []
   console.log(category)
-// const job:filteredFeatureJobType | undefined =category
+
 
 if(error?.statusText==='Unauthorized'){
   return (
@@ -86,9 +86,9 @@ if(error?.statusText==='Unauthorized'){
 
 
 const {field,icon,location,qualification,experience,name,salery,time,urgent,expirationDate,maxSalary,minSalary,date,careerLevel}=category || {}
-// const [field,icon,location,qualification,experience,name,salery,time,urgent,expirationDate,maxSalary,minSalary,date,careerLevel]=jobDataNew?.data?.getjob || []
+
  console.log(field,icon,location,qualification,experience,name,salery,time,urgent,expirationDate,maxSalary,minSalary)
-//  }
+
   return (
     <div className='w-full flex items-center justify-center  bg-white'>
     <div className='w-full h-full max-w-screen-xl  flex flex-col  lg:flex-row lg:space-x-5  space-y-7 lg:space-y-0 lg:items-center lg:justify-start  p-3 '>

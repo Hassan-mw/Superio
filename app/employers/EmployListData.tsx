@@ -28,11 +28,20 @@ interface recordDataType{
 icons:String,
 title:string,
 url:String,
-location:String
+location:String;
+openJob:number;
 }
 
 
 const EmployListData = ({data}:handleJobDataType) => {
+
+  console.log(data,'🚈🚅🚅🚄🚄🚞🚞🛴🛴🚲🚲')
+  if(!data){
+    return(
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="text-black text-3xl">No Data</div>
+    </div>)
+  }
 const [count,setCount]=useState(1)
 
 const [itemPerPage,setitemPerPage]=useState(4)
@@ -58,7 +67,7 @@ const handleChangeItems=(value:string)=>{
 }
 
 
-
+    
   return (
     <div className='w-full h-full flex flex-col items-center space-y-9 justify-center'>
       {/* Top Icons */}
@@ -77,8 +86,8 @@ const handleChangeItems=(value:string)=>{
        { data?.length>0 ?
        
        records.map((data,index:number)=> 
-          <>
-       <Link href={`employer/${data.url}`} key={index} className='w-full   border border-slate-200 rounded-md   group '>
+        
+       <Link key={index} href={`employer/${data.url}`} className='w-full   border border-slate-200 rounded-md   group '>
         <div className=' flex flex-col md:flex-row items-start justify-start md:justify-between  space-y-2 p-5 md:p-8  h-full  '>
           <div className="flex items-center justify-center space-x-3">
          {/* //!  Image */}
@@ -95,10 +104,10 @@ const handleChangeItems=(value:string)=>{
           {/* </div> */}
           </div>
         </div> 
-        <div className={`${jost.className} text-xs duration-500 border rounded-xl px-5 py-1 bg-[#dde8f8] group-hover:bg-[#1967d2] group-hover:text-white`}>Open job -1 </div>
+        <div className={`${jost.className} text-xs duration-500 border rounded-xl px-5 py-1 bg-[#dde8f8] group-hover:bg-[#1967d2] group-hover:text-white`}>Open job -{`${data.openJob || 1}`} </div>
         </div>
         </Link>
-        </>)
+        )
         
       :
       <div style={{fontWeight:400}} className={`${jost.className}  w-full flex items-center justify-center text-4xl`}>No Data</div>

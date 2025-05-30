@@ -1,7 +1,6 @@
 'use client';
 import { Jost } from 'next/font/google'
 import React, { useEffect, useState } from 'react'
-import { CiSearch } from 'react-icons/ci'
 import {
   Select,
   SelectContent,
@@ -17,7 +16,6 @@ const jost=Jost({
 
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
-import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
  
 interface handleFilterDataType{
@@ -29,7 +27,8 @@ interface handleFilterDataType{
 
 
 const JobListSidebarData = () => {
-
+   
+  const [loading,setLoading]=useState(true)
    const [jobSearch, setJobSearch] = useState('')
    const [CitySearch, setCitySearch] = useState('')
    const [rangeMiles, setRangeMiles] = useState('0')
@@ -46,10 +45,15 @@ const JobListSidebarData = () => {
    const pathName=usePathname();
 
 
+//!Loading to false
+useEffect(()=>{
+  setLoading(false)
+},[])
 
+
+//! Seetting params
  useEffect(()=>{
      const params=new URLSearchParams(searchParams);
-
    if( category !== "none" ) params.set("category", category); else params.delete("category");
    if( jobType !== "none")  params.set("jobtype",jobType) ; else params.delete("jobtype");
    if( datePosted!== "none")  params.set("datePosted",datePosted) ; else params.delete("datePosted");
@@ -57,11 +61,7 @@ const JobListSidebarData = () => {
    if( carrerlevel!== "none")  params.set("careerLevel",carrerlevel) ; else params.delete("careerLevel");
     if(rangeSalery!=='0' ) params.set("salery[lt]",rangeSalery); else params.delete("salery[lt]");
     if(rangeMiles!=='0' ) params.set("distance[lt]",rangeMiles); else params.delete("distance[lt]");
-
-    //  params.set("experience",experienced)
-    //  params.set("level",level)
      router.replace(`${pathName}?${params.toString()}`,{scroll:false})
-  //  }
 },[jobSearch,CitySearch,rangeMiles,category,jobType,datePosted,rangeSalery,experienced,carrerlevel])
 
 
@@ -75,30 +75,16 @@ const JobListSidebarData = () => {
    
 
   return (
-    <div className='w-full h-full flex flex-col  space-y-8  bg-white'>
+    <div className={` w-full h-full flex flex-col  space-y-8  bg-white`}>
     {/* input fields */}
-    <div className='flex flex-col w-full space-y-7 p-4 rounded-md bg-slate-100'>
-            {/*  Input Filed  1*/}
-          {/*<div className='w-full flex flex-col space-y-1 group'>
-          <div style={{fontWeight:500}} className={` ${jost.className} text-lg`}>Search by Keywords</div>
-
-                 <div className='border group-hover:border-blue-500 duration-500 p-3 space-x-3 rounded-md border-white bg-white flex items-center justify-center'>
-                   <div className='text-[#7b7b7b]'><CiSearch size={25} /></div>
-                    <div className='w-full'>
-                      <input type='text'  onChange={(e) => setJobSearch(e.target.value)} placeholder='Job title, Keywords...'   value={jobSearch} className={` placeholder:${jost.className} focus:outline-none lg:text-base text-[#7b8793]`}  />       
-                        </div>
-                             </div> 
-          </div>*/}
-            {/*  Input Filed  2*/}
-          {/* <div className='w-full flex flex-col space-y-1 group'>
-              <div style={{fontWeight:500}} className={` ${jost.className} text-lg`}>Location</div>
-              <div className='border group-hover:border-blue-500 duration-500 p-3 space-x-3 rounded-md border-white bg-white flex items-center justify-center'>
-                   <div className='text-[#7b7b7b]'><CiSearch size={20} /></div>
-                    <div className='w-full'>
-                      <input type='text'  onChange={(e) => setCitySearch(e.target.value)} placeholder='City or postcode'   value={CitySearch} className={` placeholder:${jost.className} focus:outline-none lg:text-base text-[#7b8793]`}  />       
-                        </div>
-                 </div>
-          </div> */}
+ {/* {loading ?  */}
+ 
+ {/* <p className='w-full h-full border p-5 rounded-md'>Loading Sidebar...</p> */}
+ {/* : */}
+ 
+ 
+ <div className='flex flex-col w-full space-y-7 p-4 rounded-md bg-slate-100'>
+    
 
           {/* Radii 1 */}
           <div className='w-full flex flex-col space-y-1 group'>
@@ -233,55 +219,10 @@ const JobListSidebarData = () => {
           <div>
             
           </div>
-             {/* <div className='w-full b'>
-             <Link href="/job-list" className='w-full hover:cursor-pointer  lg:col-span-1 duration-300 bg-[#1967d2] hover:bg-white hover:border border hover:text-[#1967d2] border-[#1967d2] flex items-center justify-center text-white rounded-lg text-sm py-4  '>Find Jobs</Link>
-
-             </div> */}
-    </div>      
-    {/* input fields */}
-    {/* <div className='flex flex-col w-full space-y-9 p-4  rounded-md bg-slate-100'>
-         
-          <div className='w-full flex flex-col space-y-1 group'>
-          <div style={{fontWeight:500}} className={` ${jost.className} text-lg`}>Job Alert</div>
-
-                <div className='border group-hover:border-blue-500 duration-500 p-3 space-x-3 rounded-md border-white bg-white flex items-center justify-center'>
-                   <div className='text-[#7b7b7b]'><CiSearch size={25} /></div>
-                    <div className='w-full'>
-                      <input type='text'  onChange={(e) => setJobSearch(e.target.value)} placeholder='Job title, Keywords...'   value={jobSearch} className={` placeholder:${jost.className}  focus:outline-none lg:text-base text-[#7b8793]`}  />       
-                        </div>
-                             </div>
-          </div>
-           
-         
-             
-             <div className='w-full flex flex-col space-y-1 group'>
-              <div style={{fontWeight:500}} className={` ${jost.className} text-lg`}>Category</div>
-                     <div className='flex items-center justify-start  group-hover:border-blue-500 border rounded-lg duration-500 border-white bg-white p-2 space-x-3  w-full   px-4'>
-                         <div className='text-[#7b7b7b]'><IoLocationOutline size={20} /></div>
-                                <div className='w-full'>
-                                           <Select>
-                                                   <SelectTrigger className="w-full  focus:ring-0 shadow-none border-none focus:outline-none text-[#7b7b7b] text-base">
-                                                     <SelectValue className={`  placeholder:truncate  placeholder:${jost.className} placeholder:text-xs`}  placeholder="Daily" />
-                                                   </SelectTrigger>
-                                                   <SelectContent className={` ${jost.className} text-[#888888]  text-xs h-[180px]  w-full`}>
-                                                     <SelectItem value="Daily">Daily</SelectItem>
-                                                     <SelectItem value="Weekly">Weekly</SelectItem>
-                                                     <SelectItem value="Fortnightly">Fortnightly</SelectItem>
-                                                     <SelectItem value="Monthly">Monthly</SelectItem>
-                                                     <SelectItem value="Biannually">Biannually</SelectItem>
-                                                  
-                                                </SelectContent>
-                                           </Select>
-                                               </div>
-                                                     
-                 </div>
-          </div>
-           
-             <div className='w-full b'>
-             <Link href="/job-list" className='w-full hover:cursor-pointer  lg:col-span-1 duration-300 bg-[#1967d2] hover:bg-white hover:border border hover:text-[#1967d2] border-[#1967d2] flex items-center justify-center text-white rounded-lg text-sm py-4  '>Find Jobs</Link>
-
-             </div>
-    </div>       */}
+          
+    </div> 
+     {/* }     */}
+  
 
     
      

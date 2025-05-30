@@ -1,16 +1,14 @@
 'use client'
+import dynamic from "next/dynamic";
 import { TfiTag } from "react-icons/tfi";
-import { MdOutlineRocketLaunch } from "react-icons/md";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { CiLocationOn } from "react-icons/ci";
 import { PiMoneyThin } from "react-icons/pi";
 import Image from 'next/image';
 import { Jost } from 'next/font/google';
 import Link from 'next/link';
-import { useEffect, useState } from "react";
-import {Select,SelectContent,SelectItem,SelectTrigger,SelectValue,} from "@/components/ui/select"
+import {useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-
 import { UseData } from "@/app/ContextApi/ContextApi";
 import JobListSidebar from "./JobListSidebar";
 
@@ -29,6 +27,7 @@ minSalary:string;
 maxSalary:string;
 time:string;
 url:string;
+urgent:boolean
 }
 
 interface handleJobDataType{
@@ -54,7 +53,7 @@ ArrayData=jobData
 if(search || location){
   if(search!==''){
   ArrayData = ArrayData?.filter(el => el.url.trim().toLowerCase().includes(search.trim().toLowerCase()))
- console.log('👓👓👓👓👓👓👓👓👓👓👓👓👓👓👓👓👓👓')
+
   }else if(location!==''){ 
   ArrayData = ArrayData?.filter(el => el.location.trim().toLowerCase() === location.trim().toLowerCase() || el.url.trim().toLowerCase()===search.trim().toLowerCase() )
 }
@@ -113,7 +112,7 @@ function handleClearSearch(){
        <Link href={`/job/${data.url}`} key={index}  className='w-full flex items-start justify-between  border border-slate-200 rounded-md   group '>
         <div className=' flex items-center -center space-x-4 p-5 h-full  '>
          {/* //!  Image */}
-          <div className=' h-full'><Image src={`/${data.icon}.jpg`}  height={50} width={50} alt='Image/Logo' /></div>
+          <div className=' h-full'><Image src={`/${data.icon}.jpg`}  loading="lazy" height={50} width={50} alt='Image/Logo' /></div>
          {/* //! Data */}
           <div className='flex flex-col space-y-3 items-start justify-between truncate    '>
           {/* Name - Featuref */}

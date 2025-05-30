@@ -79,7 +79,7 @@ const {handleSearchChange,handleLocationChange}=useContext(DataContext)
   return (
     // <div className='w-full flex items-center justify-center '>
 
-    <div className='w-full h-full   flex flex-col items-start   space-y-5 lg:space-y-8  lg:max-w-[700px]'>
+    <div className='w-full h-full   flex flex-col items-start   space-y-5 lg:space-y-8  lg:max-w-[700px] lg:pl-2'>
     <div className='w-full flex flex-col space-y-3 items-start'>
 
       <TypewriterEffect className={` ${jost.className}  font-bold -z-50` }   words={words} />

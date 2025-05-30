@@ -186,7 +186,7 @@ const FeatureJobArray = () => {
         )}
       
     </div>
-    <div className='min-w-full  flex items-center justify-center'>
+    <div className='min-w-full  flex items-center justify-center pb-12'>
    
 
         <Link  href="/job-list" className='w-[230px] text-lg py-2 flex items-center hover:cursor-pointer justify-center duration-300 bg-[#1967d2] hover:bg-white hover:border border hover:text-[#1967d2] border-[#1967d2]  text-white rounded-lg '>Load More Listing</Link>

@@ -6,7 +6,7 @@ export const getAllJob = async ({ filter }: { filter: URLSearchParams }) => {
   try {
     const queryString = new URLSearchParams(filter).toString();
 
-    const response = await fetch(`http://localhost:8000/api/job?${queryString}`)
+    const response = await fetch(`http://localhost:8000/api/jobs?${queryString}`)
     const data=await response.json()
     console.log(data, "🃏 Response received 🃏");
     return data; // No need for .json()

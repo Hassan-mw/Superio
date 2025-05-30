@@ -78,17 +78,6 @@ body {
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-.Jost {
-  font-family: 'Jost', Arial, sans-serif;
-}
 
 
 @layer base {
@@ -157,14 +146,6 @@ margin: 5px;
 
 
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
 
 
 /* From Uiverse.io by Yaya12085 */ 

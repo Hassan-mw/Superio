@@ -14,83 +14,75 @@ import ScrollElement from '@/components/ui/scroll-element';
 import HBO from './hbo/HBO';
 
 const page = () => {
+
+  
   return (
 
 
     <div className='w-full flex flex-col items-center justify-center bg-[#f2f5fb]'>
 
-
         {/*   Hero */}
-        <ScrollElement
+        {/* <ScrollElement
           direction='up'
           viewport={{ amount: 0.9, margin: '0px 0px 0px 0px' }}
           className='w-full flex items-center'
-        >
+        > */}
          <Hero/>
-        </ScrollElement>
+        {/* </ScrollElement> */}
 
          {/*   popular Job */}
-        <ScrollElement
+        {/* <ScrollElement
           direction='right'
           viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
-          className='w-full flex items-center'
-        >
+          className='w-full flex items-center '
+        > */}
          <PopularJob/>
-        </ScrollElement>
+        {/* </ScrollElement> */}
 
         {/*   Featured job */}
-        <ScrollElement
+        {/* <ScrollElement
           direction='left'
           viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
           className='w-full flex items-center'
-        >
+        > */}
          <FeatureJob/>
-        </ScrollElement>
+        {/* </ScrollElement> */}
 
-       {/*   Testmonials*/}
+      
+        {/* <ScrollElement
+          direction='left'
+          viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
+          className='w-full flex items-center'
+        > */}
+         <Company/>
+        {/* </ScrollElement> */}
+
+        {/*   Job Number */}
+        {/* <ScrollElement
+          direction='left'
+          viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
+          className='w-full flex items-center'
+        > */}
+         <JobNumbers/>
+        {/* </ScrollElement> */}
+
+        {/*   New Article*/}
         {/* <ScrollElement
           direction='right'
           viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
           className='w-full flex items-center'
-        >
-         <Testimonials/>
-        </ScrollElement> */}
-
-        {/*   Company */}
-        <ScrollElement
-          direction='left'
-          viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
-          className='w-full flex items-center'
-        >
-         <Company/>
-        </ScrollElement>
-
-        {/*   Job Number */}
-        <ScrollElement
-          direction='left'
-          viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
-          className='w-full flex items-center'
-        >
-         <JobNumbers/>
-        </ScrollElement>
-
-        {/*   New Article*/}
-        <ScrollElement
-          direction='right'
-          viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
-          className='w-full flex items-center'
-        >
+        > */}
          <NewAritcales/>
-        </ScrollElement>
+        {/* </ScrollElement> */}
 
        {/*   Download */}  
-        <ScrollElement
+        {/* <ScrollElement
           viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
           className='w-full flex items-center bg-green-700'
 
-        >
+        > */}
          <Download/>
-        </ScrollElement>
+        {/* </ScrollElement> */}
       </div>
 
 
