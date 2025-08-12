@@ -3,14 +3,14 @@ import { Jost } from 'next/font/google'
 import React, { SetStateAction, useState } from 'react'
 import axios from 'axios'
 import Cookies from "js-cookie";
-// import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 
 interface ErrorDatatype{
     error:unknown;
     status:number;
     message:string;
 }
-import toast, { Toaster } from 'react-hot-toast';
+
 const jost = Jost({
     weight: ['500'],
     subsets: ['latin']

@@ -22,67 +22,67 @@ const page = () => {
     <div className='w-full flex flex-col items-center justify-center bg-[#f2f5fb]'>
 
         {/*   Hero */}
-        {/* <ScrollElement
+        <ScrollElement
           direction='up'
           viewport={{ amount: 0.9, margin: '0px 0px 0px 0px' }}
           className='w-full flex items-center'
-        > */}
+        >
          <Hero/>
-        {/* </ScrollElement> */}
+        </ScrollElement>
 
          {/*   popular Job */}
-        {/* <ScrollElement
+        <ScrollElement
           direction='right'
           viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
           className='w-full flex items-center '
-        > */}
+        >
          <PopularJob/>
-        {/* </ScrollElement> */}
+        </ScrollElement>
 
         {/*   Featured job */}
-        {/* <ScrollElement
+        <ScrollElement
           direction='left'
           viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
           className='w-full flex items-center'
-        > */}
+        >
          <FeatureJob/>
-        {/* </ScrollElement> */}
+        </ScrollElement>
 
       
-        {/* <ScrollElement
+        <ScrollElement
           direction='left'
           viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
           className='w-full flex items-center'
-        > */}
+        >
          <Company/>
-        {/* </ScrollElement> */}
+        </ScrollElement>
 
         {/*   Job Number */}
-        {/* <ScrollElement
+        <ScrollElement
           direction='left'
           viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
           className='w-full flex items-center'
-        > */}
+        >
          <JobNumbers/>
-        {/* </ScrollElement> */}
+        </ScrollElement>
 
         {/*   New Article*/}
-        {/* <ScrollElement
+        <ScrollElement
           direction='right'
           viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
           className='w-full flex items-center'
-        > */}
+        >
          <NewAritcales/>
-        {/* </ScrollElement> */}
+        </ScrollElement>
 
-       {/*   Download */}  
-        {/* <ScrollElement
+         {/* Download */}  
+        <ScrollElement
           viewport={{ amount: 0.5, margin: '0px 0px 0px 0px' }}
           className='w-full flex items-center bg-green-700'
 
-        > */}
+        >
          <Download/>
-        {/* </ScrollElement> */}
+        </ScrollElement>
       </div>
 
 
